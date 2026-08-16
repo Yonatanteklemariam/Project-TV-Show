@@ -1,19 +1,208 @@
+/* ===============================
+   BASE / LAYOUT
+   =============================== */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background:
+    radial-gradient(circle at left top, rgb(30, 41, 59) 0%, transparent 35%),
+    linear-gradient(
+      135deg,
+      rgb(189, 196, 214),
+      rgb(32, 45, 74) 55%,
+      rgb(116, 111, 179)
+    );
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 #root {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   padding: 20px;
 }
-body {
-  background-color: #e3e3e3;
-  margin: 0;
-  font-family: Arial, sans-serif;
+
+/* ===============================
+   CONTROL BAR (shared by front page + show page)
+   =============================== */
+
+.control-bar {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  background: #1e1e1e;
+  padding: 15px 20px;
+  border-radius: 12px;
+  margin: 20px;
+  flex-wrap: wrap;
 }
+
+.hidden {
+  display: none !important;
+}
+
+.bar-title,
+#shows-title {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.bar-title a {
+  color: #b0d2f9;
+}
+
+/* Labeled field groups (select/input + small caption label) */
+.field-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-box label {
+  padding: 0;
+  color: #ccc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Search + Select (generic fallback) */
+.control-bar input,
+.control-bar select {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #0e0e0e;
+  font-size: 0.95rem;
+}
+
+/* Make search bar normal size */
+#q {
+  width: 250px;
+  padding: 10px 14px;
+  border: 2px solid #b5b5b5;
+  border-radius: 20px;
+  font-size: 1rem;
+  background: #ffffff;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#q:hover {
+  background: #f7f7f7;
+  border-color: #999;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+#q:focus {
+  outline: none;
+  border-color: #0077ff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+}
+
+#shows-selector {
+  width: 200px;
+  padding: 10px 14px;
+  border-radius: 20px;
+  background: #ffffff;
+  border: 2px solid #b5b5b5;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+#ref-a {
+  color: #93bff1;
+}
+#shows-selector:focus {
+  outline: none;
+  border-color: #0077ff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+}
+
+/* Jump-to-episode select + episode search, same pill style as the front page */
+#episode-selector,
+#episode-search {
+  background: #ffffff;
+  border: 2px solid #b5b5b5;
+  border-radius: 20px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  min-width: 220px;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#episode-selector:hover,
+#episode-search:hover {
+  background: #f7f7f7;
+  border-color: #999;
+}
+
+#episode-selector:focus,
+#episode-search:focus {
+  outline: none;
+  border-color: #0077ff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2);
+}
+
+/* Back to shows button */
+#back-to-shows {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#back-to-shows:hover {
+  background: #3a3a3a;
+}
+
+/* Episode count (front page count + show page count) */
+#episode-count,
+#episode-count-2 {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+/* ===============================
+   EPISODE CARDS
+   =============================== */
+
 .episode-card {
+  height: 550px; /* fixed height → square */
+  overflow: hidden;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   padding: 15px;
@@ -21,15 +210,22 @@ body {
     transform 0.2s ease,
     box-shadow 0.2s ease;
 }
+
 .episode-card:hover {
-  background: #f0f0f0; /* slightly darker background */
-  transform: translateY(-3px); /* subtle lift */
+  background: #f0f0f0;
+  transform: translateY(-3px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
-.episode-card a:hover {
-  background: #005fcc; /* darker blue */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+.show-card {
+  cursor: pointer;
+}
+
+.show-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .episode-card img {
@@ -44,56 +240,53 @@ body {
   margin: 10px 15px 0;
 }
 
-.episode-card p {
-  margin: 10px 15px 15px;
-  color: #555;
+.episode-title-box {
+  background: #f5f5f5;
+  border-left: 5px solid #0077ff;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
 }
+
+.episode-title-box h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.episode-card p {
+  flex: 1; /* takes remaining space */
+  overflow-y: auto; /* scrolls instead of pushing link down */
+  margin-bottom: 10px; /* spacing above link */
+}
+
 .episode-card a {
-  margin-top: auto; /* keeps it at the bottom */
-  align-self: center; /* centers the button */
-  padding: 6px 12px; /* small button size */
-  background: #0077ff;
-  color: white;
+  margin-top: auto;
+  display: block;
+  align-self: center;
+  padding: 6px 12px;
+  background: #f0f2f4;
+  color: #161617;
   text-decoration: none;
   border-radius: 6px;
   font-size: 0.9rem;
+  font-weight: bolder;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-#q {
-  width: 250px;
-  padding: 10px 14px;
-  border: 2px solid #b5b5b5; /* thicker border */
-  border-radius: 20px;
-  font-size: 1rem; /* slightly bigger text */
-  background: #ffffff; /* clean white for contrast */
-  font-weight: 500; /* bolder text */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* subtle lift */
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
+.episode-card a:hover {
+  background: #313437;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
-#q:hover {
-  background: #f7f7f7; /* gentle darkening */
-  border-color: #999; /* stronger border on hover */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* slightly stronger shadow */
-}
+/* ===============================
+   ERROR OVERLAY
+   =============================== */
 
-#q:focus {
-  outline: none;
-  border-color: #0077ff; /* blue highlight like YouTube */
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2); /* soft blue glow */
-}
-label {
-  display: flex;
-  align-items: center;
-  gap: 15px; /* space between count and search box */
-  padding: 30px;
-}
 #error-overlay {
+  display: none;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -102,17 +295,8 @@ label {
   pointer-events: none;
 }
 
-#episode-count {
-  font-weight: bold;
-  color: #333;
-}
-#error-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100%;
-  pointer-events: none;
+#error-overlay.visible {
+  display: block;
 }
 
 #error-message {

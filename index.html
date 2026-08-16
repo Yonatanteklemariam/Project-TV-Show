@@ -4,36 +4,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Show Project | Yonatan Teklemariam (Yonatanteklemariam)</title>
+  <title>TV Show Project | Yonatan Teklemariam</title>
   <link href="style.css" rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 </head>
 
 <body>
+
   <div id="error-overlay">
     <p id="error-message"></p>
   </div>
 
+  <!-- CLEAN HORIZONTAL CONTROL BAR -->
+  <div class="control-bar">
 
-  <label>
-    <input type="search" id="q" name="q" placeholder="Search term" /> 🔍
-    <p id="episode-count"></p>
-  </label>
+    <span class="bar-title">Ref: <a href="https://www.tvmaze.com/">tvmaze.com</a></span>
 
-  <template id="tv-show-card">
-    <div class="episode-card">
-      <img />
-      <h3></h3>
-      <p></p>
+    <input type="search" id="q" placeholder="Search shows" />
+
+    <div class="field-box">
+      <label for="shows-selector">A to Z</label>
+      <select id="shows-selector">
+        <option value="">--Select a show--</option>
+      </select>
     </div>
-  </template>
+
+    <span id="episode-count">Displaying 0 episodes</span>
+
+  </div>
+
+  <!-- SHOW PAGE CONTROLS (hidden until a show is selected) -->
+  <div id="show-controls" class="control-bar hidden">
+
+    <span id="shows-title" class="bar-title"></span>
+
+    <button id="back-to-shows">&larr; All Shows</button>
+
+    <div class="field-box">
+      <label for="episode-selector">Jump to Episode</label>
+      <select id="episode-selector">
+        <option value="">--- All Episodes ---</option>
+      </select>
+    </div>
+
+    <div class="field-box">
+      <label for="episode-search">Search Episodes</label>
+      <input type="text" id="episode-search" placeholder="Enter episode name..." />
+    </div>
+
+    <span id="episode-count-2"></span>
+
+  </div>
 
   <div id="root"></div>
 
-  <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-  <script src="episodes.js"></script>
-
-  <!-- Loads YOUR javascript code -->
   <script src="script.js"></script>
 </body>
 
