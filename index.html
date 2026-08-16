@@ -10,13 +10,25 @@
 </head>
 
 <body>
-  <label>
-    <p id="episode-count"></p>
-   <input type="search" id="q" name="q" placeholder="Search term" /> 🔍
-</label>
-  <div id="root">
-    
+  <div id="error-overlay">
+    <p id="error-message"></p>
   </div>
+
+
+  <label>
+    <input type="search" id="q" name="q" placeholder="Search term" /> 🔍
+    <p id="episode-count"></p>
+  </label>
+
+  <template id="tv-show-card">
+    <div class="episode-card">
+      <img />
+      <h3></h3>
+      <p></p>
+    </div>
+  </template>
+
+  <div id="root"></div>
 
   <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
   <script src="episodes.js"></script>

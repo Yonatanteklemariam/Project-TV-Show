@@ -1,3 +1,122 @@
 #root {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+body {
+  background-color: #e3e3e3;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.episode-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.episode-card:hover {
+  background: #f0f0f0; /* slightly darker background */
+  transform: translateY(-3px); /* subtle lift */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.episode-card a:hover {
+  background: #005fcc; /* darker blue */
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.episode-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.episode-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 10px 15px 0;
+}
+
+.episode-card p {
+  margin: 10px 15px 15px;
+  color: #555;
+}
+.episode-card a {
+  margin-top: auto; /* keeps it at the bottom */
+  align-self: center; /* centers the button */
+  padding: 6px 12px; /* small button size */
+  background: #0077ff;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+#q {
+  width: 250px;
+  padding: 10px 14px;
+  border: 2px solid #b5b5b5; /* thicker border */
+  border-radius: 20px;
+  font-size: 1rem; /* slightly bigger text */
+  background: #ffffff; /* clean white for contrast */
+  font-weight: 500; /* bolder text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15); /* subtle lift */
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+#q:hover {
+  background: #f7f7f7; /* gentle darkening */
+  border-color: #999; /* stronger border on hover */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* slightly stronger shadow */
+}
+
+#q:focus {
+  outline: none;
+  border-color: #0077ff; /* blue highlight like YouTube */
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.2); /* soft blue glow */
+}
+label {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* space between count and search box */
+  padding: 30px;
+}
+#error-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  pointer-events: none;
+}
+
+#episode-count {
+  font-weight: bold;
+  color: #333;
+}
+#error-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  pointer-events: none;
+}
+
+#error-message {
   color: red;
+  text-align: center;
+  font-size: 1.5rem;
 }

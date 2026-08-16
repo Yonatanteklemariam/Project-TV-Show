@@ -1,28 +1,37 @@
 //You can edit ALL of the code here
-function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  state.allEpisodes = allEpisodes;
-  render();
-}
-
 const state = {
   allEpisodes: [],
   searchTerm: "",
 };
+
+const input = document.getElementById("q");
+const countElem = document.getElementById("episode-count");
+const rootElem = document.getElementById("root");
+const errorMessage = document.getElementById("error-message");
+
+function setup() {
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then((response) => response.json())
+    .then((allEpisodes) => {
+      state.allEpisodes = allEpisodes;
+      render();
+    })
+    .catch((error) => {
+      errorMessage.textContent = "Failed to load episodes...!";
+      console.error("Error fetching episodes:", error);
+    });
+}
 
 function render() {
   const filteredEpisodes = state.allEpisodes.filter(function (episode) {
     return episode.name.toLowerCase().includes(state.searchTerm.toLowerCase());
   });
 
-  document.getElementById("episode-count").textContent =
-    `Displaying ${filteredEpisodes.length}/${state.allEpisodes.length} episodes`;
+  countElem.textContent = `Displaying ${filteredEpisodes.length}/${state.allEpisodes.length} episodes`;
   makePageForEpisodes(filteredEpisodes);
 }
 
 function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
   rootElem.innerHTML = "";
 
   episodeList.forEach((episode) => {
@@ -55,7 +64,6 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
-const input = document.querySelector("input");
 input.addEventListener("keyup", function () {
   state.searchTerm = input.value;
   render();
