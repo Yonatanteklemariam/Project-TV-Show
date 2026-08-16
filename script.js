@@ -2,6 +2,23 @@
 function setup() {
   const allEpisodes = getAllEpisodes();
   makePageForEpisodes(allEpisodes);
+  state.allEpisodes = allEpisodes;
+  render();
+}
+
+const state = {
+  allEpisodes: [],
+  searchTerm: "",
+};
+
+function render() {
+  const filteredEpisodes = state.allEpisodes.filter(function (episode) {
+    return episode.name.toLowerCase().includes(state.searchTerm.toLowerCase());
+  });
+
+  document.getElementById("episode-count").textContent =
+    `Displaying ${filteredEpisodes.length}/${state.allEpisodes.length} episodes`;
+  makePageForEpisodes(filteredEpisodes);
 }
 
 function makePageForEpisodes(episodeList) {
@@ -37,6 +54,12 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(episodeDiv);
   });
 }
+
+const input = document.querySelector("input");
+input.addEventListener("keyup", function () {
+  state.searchTerm = input.value;
+  render();
+});
 
 window.onload = setup;
 
