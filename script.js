@@ -11,7 +11,6 @@ const showsSearch = document.getElementById("q");
 const showsCount = document.getElementById("episode-count");
 const showControls = document.getElementById("show-controls");
 const frontBar = document.querySelector(".control-bar");
-const backButton = document.getElementById("back-to-shows");
 const episodeSelector = document.getElementById("episode-selector");
 const episodeSearch = document.getElementById("episode-search");
 const episodeCount2 = document.getElementById("episode-count-2");
@@ -134,10 +133,6 @@ function loadShow(showId, showName) {
       showsTitle.textContent = showName;
       switchToEpisodeMode();
       render();
-    })
-    .catch((error) => {
-      showError("Failed to load episodes.");
-      console.error("Error fetching episodes:", error);
     });
 }
 
@@ -155,8 +150,6 @@ function switchToFrontPageMode() {
   renderShowOptions(state.allShows);
   renderShowCards(state.allShows);
 }
-
-backButton.addEventListener("click", switchToFrontPageMode);
 
 function render() {
   const filteredEpisodes = state.allEpisodes.filter((episode) =>

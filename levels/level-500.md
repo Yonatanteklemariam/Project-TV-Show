@@ -19,9 +19,10 @@ Have a discussion about your answers to these questions. In class, together you 
 
 **Best Practice: Use Feature Branches**
 To maintain a clean workflow, follow these steps for Level 500:
-* Once you have merged Level 400 and are satisfied with the changes, **create a new branch** (e.g., `feature/level-500`) to continue your development.
-* After completing all Level 500 requirements on this branch, merge it into your main branch.
-* **Important:** Test your changes thoroughly on GitHub Pages before moving to the final deployment.
+
+- Once you have merged Level 400 and are satisfied with the changes, **create a new branch** (e.g., `feature/level-500`) to continue your development.
+- After completing all Level 500 requirements on this branch, merge it into your main branch.
+- **Important:** Test your changes thoroughly on GitHub Pages before moving to the final deployment.
 
 ---
 
@@ -56,7 +57,7 @@ Note: Provided your project meets the above requirements, it can **look** howeve
 
 Here is one example layout.
 
-![Screenshot of a website with a drop-down list with the show "Breaking Bad" selected](example-screenshots/example-level-500.jpg)
+![Screenshot of a website with a drop-down list with the show "Breaking Bad" selected](example-screenshots/example-level-500.)
 
 ### Deployment to Netlify
 
@@ -69,3 +70,4 @@ Follow the [Official CYF Netlify Deployment Guide](https://curriculum.codeyourfu
 Once you have finished your level 500 it is ready to submit.
 
 Check the [README.md](../README.md) for this repo for instructions.
+jpg
